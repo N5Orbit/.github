@@ -1,0 +1,101 @@
+name: "N5 Work Item — DDD / Gherkin v1"
+description: "A reviewable feature, defect, refactor or operational change; concrete behavior, boundaries and checks"
+title: "[SCOPE] Outcome-oriented summary"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **N5 Issue Contract v1.** Provide current evidence and measurable acceptance. DDD terms only when there is actual domain behavior. Cucumber is not required to write Gherkin.
+        Reference: https://github.com/N5Orbit/shared/blob/main/ai/standards/issue-contract-v1.md
+        GitHub Issue/PR state is authoritative; do not paste credentials or private customer data.
+  - type: dropdown
+    id: change-kind
+    attributes:
+      label: Change kind
+      options:
+        - Feature / Domain behavior
+        - Defect / Regression
+        - Refactor / Maintenance
+        - Infrastructure / Reliability
+        - Security / Compliance
+        - Research / Discovery
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome and present behavior
+      description: "Who needs what? Include the current behavior/error, what changes and how to reproduce a bug."
+      placeholder: |
+        Outcome:
+        Current / observed:
+        Desired:
+        Evidence / link:
+    validations:
+      required: true
+  - type: textarea
+    id: domain
+    attributes:
+      label: Domain boundary and invariants (DDD, if applicable)
+      description: "Bounded context, owning repository/service, ubiquitous terms, aggregate/transaction boundary and invariants. For ops/docs write N/A with a brief reason."
+      placeholder: |
+        Owning context and repo:
+        Terms and invariants:
+        Commands/events/API/consumers:
+        Cross-context dependencies:
+    validations:
+      required: false
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance scenarios (Gherkin or observable checks)
+      description: "Include successful and denied/error behavior. For nonbehavioral Issues, specify measurable commands, outputs or safety invariants instead."
+      placeholder: |
+        Feature: ...
+          Scenario: Authorized action
+            Given ...
+            When ...
+            Then ...
+
+          Scenario: Denied or failure path
+            Given ...
+            When ...
+            Then ...
+    validations:
+      required: true
+  - type: textarea
+    id: reuse
+    attributes:
+      label: Existing building blocks checked
+      description: "List reviewed shared packages (@n5orbit/sdk, ui, tokens, icons, fonts), OpenAPI contracts or existing domain components; otherwise write N/A with reason. Verify actual current versions."
+      placeholder: |
+        Existing kit/component/contract and version:
+        Reuse decision:
+        Compatibility or version-bump needs:
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety, scope and non-goals
+      description: "Tenant/auth, secrets, schema/data migration, contracts, idempotency, external writes, approvals, rollback, and what is out of scope as relevant."
+      placeholder: |
+        Allowed target repo/module:
+        Non-goals:
+        Risk/permission boundary:
+        Rollback or stop condition:
+    validations:
+      required: false
+  - type: textarea
+    id: verification
+    attributes:
+      label: Planned verification and definition of done
+      description: "List intended tests and evidence; don't mark unrun tests as passed. GitHub Actions billing hold does not authorize skipping local checks."
+      placeholder: |
+        Local commands / framework:
+        Scenario-to-test mapping:
+        Evidence required (test output, exact SHA, PR):
+        Reviewer / approval gates:
+    validations:
+      required: true
